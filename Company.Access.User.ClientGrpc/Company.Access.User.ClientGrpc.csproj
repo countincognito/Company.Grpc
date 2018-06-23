@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Company.Access.User.InterfaceGrpc\Company.Access.User.InterfaceGrpc.csproj" />
+    <ProjectReference Include="..\Company.Access.User.Interface\Company.Access.User.Interface.csproj" />
+  </ItemGroup>
+
+</Project>

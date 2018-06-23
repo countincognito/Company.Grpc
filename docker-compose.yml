@@ -1,0 +1,92 @@
+version: '3.4'
+
+services:
+  company.api.rest.servicegrpc:
+    image: companyapirestservicegrpc
+    environment:
+      - MembershipManagerHost=${MembershipManagerHost}
+      - MembershipManagerPort=${MembershipManagerPort}
+      - RestApiPort=${RestApiPort}
+      - SeqHost=${SeqHost}
+      - SeqPort=${SeqPort}
+      - CaDir=${Ca}.${CertsSuffix}
+      - CertsDir=${RestApiHost}.${CertsSuffix}
+      - CaCrt=${CaCrt}
+      - ServerPfx=${ServerPfx}
+      - CrtPassword=${CrtPassword}
+    ports:
+      - ${RestApiPort}:${RestApiPort}
+    build:
+      context: .
+      args:
+        Config: ${Config}
+        CaDir: ${Ca}.${CertsSuffix}
+        CertsDir: ${RestApiHost}.${CertsSuffix}
+      dockerfile: Company.Api.Rest.ServiceGrpc/Dockerfile
+    depends_on:
+      - company.manager.membership.servicegrpc
+
+  company.manager.membership.servicegrpc:
+    image: companymanagermembershipservicegrpc
+    environment:
+      - RegistrationEngineHost=${RegistrationEngineHost}
+      - RegistrationEnginePort=${RegistrationEnginePort}
+      - MembershipManagerPort=${MembershipManagerPort}
+      - SeqHost=${SeqHost}
+      - SeqPort=${SeqPort}
+      - CaDir=${Ca}.${CertsSuffix}
+      - CertsDir=${MembershipManagerHost}.${CertsSuffix}
+      - CaCrt=${CaCrt}
+      - ServerKey=${ServerKey}
+      - ServerCrt=${ServerCrt}
+    build:
+      context: .
+      args:
+        Config: ${Config}
+        CaDir: ${Ca}.${CertsSuffix}
+        CertsDir: ${MembershipManagerHost}.${CertsSuffix}
+      dockerfile: Company.Manager.Membership.ServiceGrpc/Dockerfile
+    depends_on:
+      - company.engine.registration.servicegrpc
+
+  company.engine.registration.servicegrpc:
+    image: companyengineregistrationservicegrpc
+    environment:
+      - UserAccessHost=${UserAccessHost}
+      - UserAccessPort=${UserAccessPort}
+      - RegistrationEnginePort=${RegistrationEnginePort}
+      - SeqHost=${SeqHost}
+      - SeqPort=${SeqPort}
+      - CaDir=${Ca}.${CertsSuffix}
+      - CertsDir=${RegistrationEngineHost}.${CertsSuffix}
+      - CaCrt=${CaCrt}
+      - ServerKey=${ServerKey}
+      - ServerCrt=${ServerCrt}
+    build:
+      context: .
+      args:
+        Config: ${Config}
+        CaDir: ${Ca}.${CertsSuffix}
+        CertsDir: ${RegistrationEngineHost}.${CertsSuffix}
+      dockerfile: Company.Engine.Registration.ServiceGrpc/Dockerfile
+    depends_on:
+      - company.access.user.servicegrpc
+
+  company.access.user.servicegrpc:
+    image: companyaccessuserservicegrpc
+    environment:
+      - UserAccessPort=${UserAccessPort}
+      - SeqHost=${SeqHost}
+      - SeqPort=${SeqPort}
+      - CaDir=${Ca}.${CertsSuffix}
+      - CertsDir=${UserAccessHost}.${CertsSuffix}
+      - CaCrt=${CaCrt}
+      - ServerKey=${ServerKey}
+      - ServerCrt=${ServerCrt}
+    build:
+      context: .
+      args:
+        Config: ${Config}
+        CaDir: ${Ca}.${CertsSuffix}
+        CertsDir: ${UserAccessHost}.${CertsSuffix}
+      dockerfile: Company.Access.User.ServiceGrpc/Dockerfile

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="5.0.0" />
+    <PackageReference Include="Destructurama.Attributed" Version="2.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Company.Access.User.Impl\Company.Access.User.Impl.csproj" />
+    <ProjectReference Include="..\Company.Access.User.InterfaceGrpc\Company.Access.User.InterfaceGrpc.csproj" />
+    <ProjectReference Include="..\Company.Access.User.Interface\Company.Access.User.Interface.csproj" />
+    <ProjectReference Include="..\Company.Grpc.Server\Company.Grpc.Server.csproj" />
+  </ItemGroup>
+
+</Project>
