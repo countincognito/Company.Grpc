@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Company.Access.User.Impl\Company.Access.User.Impl.csproj" />
+    <ProjectReference Include="..\..\src\Company.Access.User.Interface\Company.Access.User.Interface.csproj" />
+    <ProjectReference Include="..\..\src\Company.Api.Rest.Impl\Company.Api.Rest.Impl.csproj" />
+    <ProjectReference Include="..\..\src\Company.Engine.Registration.Impl\Company.Engine.Registration.Impl.csproj" />
+    <ProjectReference Include="..\..\src\Company.Engine.Registration.Interface\Company.Engine.Registration.Interface.csproj" />
+    <ProjectReference Include="..\..\src\Company.Manager.Membership.Impl\Company.Manager.Membership.Impl.csproj" />
+    <ProjectReference Include="..\..\src\Company.Manager.Membership.Interface\Company.Manager.Membership.Interface.csproj" />
+  </ItemGroup>
+</Project>

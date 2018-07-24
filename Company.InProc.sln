@@ -27,25 +27,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Registration", "Registratio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Membership", "Membership", "{0F5BF3A1-FCAC-4BA2-8127-F46F4AD10E7A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Common.Data", "Company.Common.Data\Company.Common.Data.csproj", "{1D70F27F-335B-455C-A469-505EFAB7E09A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Common.Data", "src\Company.Common.Data\Company.Common.Data.csproj", "{1D70F27F-335B-455C-A469-505EFAB7E09A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Access.User.Interface", "Company.Access.User.Interface\Company.Access.User.Interface.csproj", "{8BAFF326-AC83-44E2-9719-9FBA6F039450}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Access.User.Interface", "src\Company.Access.User.Interface\Company.Access.User.Interface.csproj", "{8BAFF326-AC83-44E2-9719-9FBA6F039450}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Access.User.Impl", "Company.Access.User.Impl\Company.Access.User.Impl.csproj", "{B5AD2726-197E-4BEC-A3F3-8A899C5B5465}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Access.User.Impl", "src\Company.Access.User.Impl\Company.Access.User.Impl.csproj", "{B5AD2726-197E-4BEC-A3F3-8A899C5B5465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.InProc.RestApi", "Test.InProc.RestApi\Test.InProc.RestApi.csproj", "{5A8FCA02-DD45-4663-A155-D097B3DF05BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.InProc.RestApi", "test\Test.InProc.RestApi\Test.InProc.RestApi.csproj", "{5A8FCA02-DD45-4663-A155-D097B3DF05BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Engine.Registration.Interface", "Company.Engine.Registration.Interface\Company.Engine.Registration.Interface.csproj", "{5F5CA8B5-0D63-4DCB-B8D5-711805BF237E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Engine.Registration.Interface", "src\Company.Engine.Registration.Interface\Company.Engine.Registration.Interface.csproj", "{5F5CA8B5-0D63-4DCB-B8D5-711805BF237E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Engine.Registration.Impl", "Company.Engine.Registration.Impl\Company.Engine.Registration.Impl.csproj", "{594E5077-7535-41F7-A369-54C396439ECF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Engine.Registration.Impl", "src\Company.Engine.Registration.Impl\Company.Engine.Registration.Impl.csproj", "{594E5077-7535-41F7-A369-54C396439ECF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Manager.Membership.Interface", "Company.Manager.Membership.Interface\Company.Manager.Membership.Interface.csproj", "{6DE27778-7377-4341-BBF9-6CB6E13C1678}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Manager.Membership.Interface", "src\Company.Manager.Membership.Interface\Company.Manager.Membership.Interface.csproj", "{6DE27778-7377-4341-BBF9-6CB6E13C1678}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Manager.Membership.Impl", "Company.Manager.Membership.Impl\Company.Manager.Membership.Impl.csproj", "{80246EEB-0733-4799-99DA-C2896C0A9C42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Manager.Membership.Impl", "src\Company.Manager.Membership.Impl\Company.Manager.Membership.Impl.csproj", "{80246EEB-0733-4799-99DA-C2896C0A9C42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Api.Rest.Data", "Company.Api.Rest.Data\Company.Api.Rest.Data.csproj", "{14C5212D-642F-419E-99C9-199B5A02C108}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Api.Rest.Data", "src\Company.Api.Rest.Data\Company.Api.Rest.Data.csproj", "{14C5212D-642F-419E-99C9-199B5A02C108}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Api.Rest.Impl", "Company.Api.Rest.Impl\Company.Api.Rest.Impl.csproj", "{00A641F1-DCFD-4688-947C-E5157CB8E8CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Api.Rest.Impl", "src\Company.Api.Rest.Impl\Company.Api.Rest.Impl.csproj", "{00A641F1-DCFD-4688-947C-E5157CB8E8CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

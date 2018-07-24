@@ -22,7 +22,7 @@ services:
         Config: ${Config}
         CaDir: ${Ca}.${CertsSuffix}
         CertsDir: ${RestApiHost}.${CertsSuffix}
-      dockerfile: Company.Api.Rest.ServiceGrpc/Dockerfile
+      dockerfile: src/Company.Api.Rest.ServiceGrpc/Dockerfile
     depends_on:
       - company.manager.membership.servicegrpc
 
@@ -45,7 +45,7 @@ services:
         Config: ${Config}
         CaDir: ${Ca}.${CertsSuffix}
         CertsDir: ${MembershipManagerHost}.${CertsSuffix}
-      dockerfile: Company.Manager.Membership.ServiceGrpc/Dockerfile
+      dockerfile: src/Company.Manager.Membership.ServiceGrpc/Dockerfile
     depends_on:
       - company.engine.registration.servicegrpc
 
@@ -68,7 +68,7 @@ services:
         Config: ${Config}
         CaDir: ${Ca}.${CertsSuffix}
         CertsDir: ${RegistrationEngineHost}.${CertsSuffix}
-      dockerfile: Company.Engine.Registration.ServiceGrpc/Dockerfile
+      dockerfile: src/Company.Engine.Registration.ServiceGrpc/Dockerfile
     depends_on:
       - company.access.user.servicegrpc
 
@@ -89,4 +89,4 @@ services:
         Config: ${Config}
         CaDir: ${Ca}.${CertsSuffix}
         CertsDir: ${UserAccessHost}.${CertsSuffix}
-      dockerfile: Company.Access.User.ServiceGrpc/Dockerfile
+      dockerfile: src/Company.Access.User.ServiceGrpc/Dockerfile
