@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Company.Engine.Registration.ClientGrpc\Company.Engine.Registration.ClientGrpc.csproj" />
+    <ProjectReference Include="..\Company.Engine.Registration.Client\Company.Engine.Registration.Client.csproj" />
     <ProjectReference Include="..\Company.Grpc.Client\Company.Grpc.Client.csproj" />
     <ProjectReference Include="..\Company.Grpc.Server\Company.Grpc.Server.csproj" />
     <ProjectReference Include="..\Company.Manager.Membership.Impl\Company.Manager.Membership.Impl.csproj" />

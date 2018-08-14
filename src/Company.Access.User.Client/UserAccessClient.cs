@@ -3,14 +3,14 @@ using Company.Access.User.InterfaceGrpc;
 using System;
 using System.Threading.Tasks;
 
-namespace Company.Access.User.ClientGrpc
+namespace Company.Access.User.Client
 {
-    public class UserAccessGrpc
+    public class UserAccessClient
         : IUserAccess
     {
         private IUserAccessGrpc _GrpcClient;
 
-        public UserAccessGrpc(IUserAccessGrpc grpcClient)
+        public UserAccessClient(IUserAccessGrpc grpcClient)
         {
             _GrpcClient = grpcClient ?? throw new ArgumentNullException(nameof(grpcClient));
         }

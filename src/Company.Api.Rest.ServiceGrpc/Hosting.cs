@@ -1,7 +1,7 @@
 ﻿using Company.Api.Rest.Impl;
 using Company.Grpc.Client;
 using Company.Grpc.Common;
-using Company.Manager.Membership.ClientGrpc;
+using Company.Manager.Membership.Client;
 using Company.Manager.Membership.Interface;
 using Company.Manager.Membership.InterfaceGrpc;
 using Destructurama;
@@ -23,14 +23,14 @@ namespace Company.Api.Rest.ServiceGrpc
             var caCrt = File.ReadAllText(EnvVars.CaCrtPath());
             var sslCredentials = new SslCredentials(caCrt);
 
-            var membershipManagerChannel = new Channel(
+            var membershipManagerGrpcChannel = new Channel(
                 EnvVars.Target(@"MembershipManagerHost", @"MembershipManagerPort"),
                 sslCredentials);
 
             // Create MagicOnion dynamic client proxy
-            var membershipManagerClient = TrackingProxy.Create<IMembershipManagerGrpc>(membershipManagerChannel);
+            var membershipManagerGrpcClient = TrackingProxy.Create<IMembershipManagerGrpc>(membershipManagerGrpcChannel);
 
-            var membershipManager = LogProxy.Create<IMembershipManager>(new MembershipManagerGrpc(membershipManagerClient), serilog, LogType.All);
+            var membershipManager = LogProxy.Create<IMembershipManager>(new MembershipManagerClient(membershipManagerGrpcClient), serilog, LogType.All);
 
             var restApiLogger = serilog;
 

@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
-using Company.Access.User.ClientGrpc;
+using Company.Access.User.Client;
 using Company.Access.User.Interface;
 using Company.Access.User.InterfaceGrpc;
 using Company.Engine.Registration.Impl;
@@ -44,14 +44,14 @@ namespace Company.Engine.Registration.ServiceGrpc
             var caCrt = File.ReadAllText(EnvVars.CaCrtPath());
             var sslCredentials = new SslCredentials(caCrt);
 
-            var userAccessChannel = new Channel(
+            var userAccessGrpcChannel = new Channel(
                 EnvVars.Target(@"UserAccessHost", @"UserAccessPort"),
                 sslCredentials);
 
             // Create MagicOnion dynamic client proxy
-            var userAccessClient = TrackingProxy.Create<IUserAccessGrpc>(userAccessChannel);
+            var userAccessGrpcClient = TrackingProxy.Create<IUserAccessGrpc>(userAccessGrpcChannel);
 
-            var userAccess = LogProxy.Create<IUserAccess>(new UserAccessGrpc(userAccessClient), serilog, LogType.All);
+            var userAccess = LogProxy.Create<IUserAccess>(new UserAccessClient(userAccessGrpcClient), serilog, LogType.All);
 
             builder.RegisterInstance<Serilog.ILogger>(serilog);
             builder.RegisterInstance<IUserAccess>(userAccess);

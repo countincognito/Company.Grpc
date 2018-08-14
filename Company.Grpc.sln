@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Access.User.Impl", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Api.Rest.Impl", "src\Company.Api.Rest.Impl\Company.Api.Rest.Impl.csproj", "{E9247284-0CE7-4C34-B3B9-5DD527A2DB91}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Access.User.ClientGrpc", "src\Company.Access.User.ClientGrpc\Company.Access.User.ClientGrpc.csproj", "{549ADC4D-F0BA-4019-B6B6-6D339211BCC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Access.User.Client", "src\Company.Access.User.Client\Company.Access.User.Client.csproj", "{549ADC4D-F0BA-4019-B6B6-6D339211BCC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Membership", "Membership", "{0E09370F-BD65-4ECA-972B-A74DAEAC8C61}"
 EndProject
@@ -55,11 +55,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Manager.Membership.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Manager.Membership.InterfaceGrpc", "src\Company.Manager.Membership.InterfaceGrpc\Company.Manager.Membership.InterfaceGrpc.csproj", "{98412CA7-51F0-499D-ADD9-DC583C10E4A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Manager.Membership.ClientGrpc", "src\Company.Manager.Membership.ClientGrpc\Company.Manager.Membership.ClientGrpc.csproj", "{89E14E6B-5BC6-4DBE-AD22-0E66F402EEBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Manager.Membership.Client", "src\Company.Manager.Membership.Client\Company.Manager.Membership.Client.csproj", "{89E14E6B-5BC6-4DBE-AD22-0E66F402EEBE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Engine.Registration.InterfaceGrpc", "src\Company.Engine.Registration.InterfaceGrpc\Company.Engine.Registration.InterfaceGrpc.csproj", "{E5B421C9-2075-4BE4-8AEC-22B7F264B7CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Engine.Registration.ClientGrpc", "src\Company.Engine.Registration.ClientGrpc\Company.Engine.Registration.ClientGrpc.csproj", "{9E95F6CE-1A33-453F-9292-9E991AC2A3DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Engine.Registration.Client", "src\Company.Engine.Registration.Client\Company.Engine.Registration.Client.csproj", "{9E95F6CE-1A33-453F-9292-9E991AC2A3DA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Engine.Registration.ServiceGrpc", "src\Company.Engine.Registration.ServiceGrpc\Company.Engine.Registration.ServiceGrpc.csproj", "{8EE3E2E2-9828-42B8-93CF-BA24112CD361}"
 EndProject
