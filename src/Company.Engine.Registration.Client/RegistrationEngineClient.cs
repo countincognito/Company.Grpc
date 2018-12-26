@@ -1,17 +1,17 @@
 ﻿using Company.Common.Data;
-using Company.Manager.Membership.Interface;
-using Company.Manager.Membership.InterfaceGrpc;
+using Company.Engine.Registration.Interface;
+using Company.Engine.Registration.InterfaceGrpc;
 using System;
 using System.Threading.Tasks;
 
-namespace Company.Manager.Membership.ClientGrpc
+namespace Company.Engine.Registration.Client
 {
-    public class MembershipManagerGrpc
-        : IMembershipManager
+    public class RegistrationEngineClient
+        : IRegistrationEngine
     {
-        private IMembershipManagerGrpc _GrpcClient;
+        private IRegistrationEngineGrpc _GrpcClient;
 
-        public MembershipManagerGrpc(IMembershipManagerGrpc grpcClient)
+        public RegistrationEngineClient(IRegistrationEngineGrpc grpcClient)
         {
             _GrpcClient = grpcClient ?? throw new ArgumentNullException(nameof(grpcClient));
         }

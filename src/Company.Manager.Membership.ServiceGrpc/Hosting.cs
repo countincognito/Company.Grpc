@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
-using Company.Engine.Registration.ClientGrpc;
+using Company.Engine.Registration.Client;
 using Company.Engine.Registration.Interface;
 using Company.Engine.Registration.InterfaceGrpc;
 using Company.Grpc.Client;
@@ -44,14 +44,14 @@ namespace Company.Manager.Membership.ServiceGrpc
             var caCrt = File.ReadAllText(EnvVars.CaCrtPath());
             var sslCredentials = new SslCredentials(caCrt);
 
-            var registrationEngineChannel = new Channel(
+            var registrationEngineGrpcChannel = new Channel(
                 EnvVars.Target(@"RegistrationEngineHost", @"RegistrationEnginePort"),
                 sslCredentials);
 
             // Create MagicOnion dynamic client proxy
-            var registrationEngineClient = TrackingProxy.Create<IRegistrationEngineGrpc>(registrationEngineChannel);
+            var registrationEngineGrpcClient = TrackingProxy.Create<IRegistrationEngineGrpc>(registrationEngineGrpcChannel);
 
-            var registrationEngine = LogProxy.Create<IRegistrationEngine>(new RegistrationEngineGrpc(registrationEngineClient), serilog, LogType.All);
+            var registrationEngine = LogProxy.Create<IRegistrationEngine>(new RegistrationEngineClient(registrationEngineGrpcClient), serilog, LogType.All);
 
             builder.RegisterInstance<Serilog.ILogger>(serilog);
             builder.RegisterInstance<IRegistrationEngine>(registrationEngine);
