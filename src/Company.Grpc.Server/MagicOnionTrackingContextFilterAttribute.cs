@@ -14,16 +14,16 @@ namespace Company.Grpc.Server
         {
         }
 
-        public MagicOnionTrackingContextFilterAttribute(Func<ServiceContext, Task> next)
+        public MagicOnionTrackingContextFilterAttribute(Func<ServiceContext, ValueTask> next)
             : base(next)
         {
         }
 
-        public async override Task Invoke(ServiceContext context)
+        public override ValueTask Invoke(ServiceContext context)
         {
             Metadata headers = context?.CallContext?.RequestHeaders ?? new Metadata();
             TrackingHelper.ProcessHeaders(headers);
-            await Next?.Invoke(context);
+            return Next.Invoke(context);
         }
     }
 }

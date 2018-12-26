@@ -1,24 +1,23 @@
-FROM microsoft/dotnet:2.0-runtime AS base
+FROM microsoft/dotnet:2.2-runtime AS base
 WORKDIR /app
 
-FROM microsoft/dotnet:2.0-sdk AS build
+FROM microsoft/dotnet:2.2-sdk AS build
 ARG Config
-WORKDIR /src
-COPY Company.Grpc.sln ./
-COPY src/Company.Grpc.Common/Company.Grpc.Common.csproj src/Company.Grpc.Common/
-COPY src/Company.Grpc.Client/Company.Grpc.Client.csproj src/Company.Grpc.Client/
-COPY src/Company.Grpc.Server/Company.Grpc.Server.csproj src/Company.Grpc.Server/
-COPY src/Company.Common.Data/Company.Common.Data.csproj src/Company.Common.Data/
-COPY src/Company.Engine.Registration.ServiceGrpc/Company.Engine.Registration.ServiceGrpc.csproj src/Company.Engine.Registration.ServiceGrpc/
-COPY src/Company.Engine.Registration.InterfaceGrpc/Company.Engine.Registration.InterfaceGrpc.csproj src/Company.Engine.Registration.InterfaceGrpc/
-COPY src/Company.Engine.Registration.Interface/Company.Engine.Registration.Interface.csproj src/Company.Engine.Registration.Interface/
-COPY src/Company.Access.User.ClientGrpc/Company.Access.User.ClientGrpc.csproj src/Company.Access.User.ClientGrpc/
-COPY src/Company.Access.User.InterfaceGrpc/Company.Access.User.InterfaceGrpc.csproj src/Company.Access.User.InterfaceGrpc/
-COPY src/Company.Access.User.Interface/Company.Access.User.Interface.csproj src/Company.Access.User.Interface/
-COPY src/Company.Engine.Registration.Impl/Company.Engine.Registration.Impl.csproj src/Company.Engine.Registration.Impl/
-RUN dotnet restore -nowarn:msb3202,nu1503
+WORKDIR /
+COPY src/Company.Grpc.Common/Company.Grpc.Common.csproj src/Company.Grpc.Common
+COPY src/Company.Grpc.Client/Company.Grpc.Client.csproj src/Company.Grpc.Client
+COPY src/Company.Grpc.Server/Company.Grpc.Server.csproj src/Company.Grpc.Server
+COPY src/Company.Common.Data/Company.Common.Data.csproj src/Company.Common.Data
+COPY src/Company.Engine.Registration.ServiceGrpc/Company.Engine.Registration.ServiceGrpc.csproj src/Company.Engine.Registration.ServiceGrpc
+COPY src/Company.Engine.Registration.InterfaceGrpc/Company.Engine.Registration.InterfaceGrpc.csproj src/Company.Engine.Registration.InterfaceGrpc
+COPY src/Company.Engine.Registration.Interface/Company.Engine.Registration.Interface.csproj src/Company.Engine.Registration.Interface
+COPY src/Company.Access.User.ClientGrpc/Company.Access.User.ClientGrpc.csproj src/Company.Access.User.ClientGrpc
+COPY src/Company.Access.User.InterfaceGrpc/Company.Access.User.InterfaceGrpc.csproj src/Company.Access.User.InterfaceGrpc
+COPY src/Company.Access.User.Interface/Company.Access.User.Interface.csproj src/Company.Access.User.Interface
+COPY src/Company.Engine.Registration.Impl/Company.Engine.Registration.Impl.csproj src/Company.Engine.Registration.Impl
+RUN dotnet restore src/Company.Engine.Registration.ServiceGrpc -nowarn:msb3202,nu1503
 COPY . .
-WORKDIR /src/src/Company.Engine.Registration.ServiceGrpc
+WORKDIR /src/Company.Engine.Registration.ServiceGrpc
 RUN dotnet build -c ${Config:-Release} -o /app
 
 FROM build AS publish
