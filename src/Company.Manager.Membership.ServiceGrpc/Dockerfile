@@ -13,7 +13,7 @@ COPY src/Company.Manager.Membership.Interface/Company.Manager.Membership.Interfa
 COPY src/Company.Manager.Membership.InterfaceGrpc/Company.Manager.Membership.InterfaceGrpc.csproj src/Company.Manager.Membership.InterfaceGrpc
 COPY src/Company.Manager.Membership.Impl/Company.Manager.Membership.Impl.csproj src/Company.Manager.Membership.Impl
 COPY src/Company.Engine.Registration.Interface/Company.Engine.Registration.Interface.csproj src/Company.Engine.Registration.Interface
-COPY src/Company.Engine.Registration.ClientGrpc/Company.Engine.Registration.ClientGrpc.csproj src/Company.Engine.Registration.ClientGrpc
+COPY src/Company.Engine.Registration.Client/Company.Engine.Registration.Client.csproj src/Company.Engine.Registration.Client
 COPY src/Company.Engine.Registration.InterfaceGrpc/Company.Engine.Registration.InterfaceGrpc.csproj src/Company.Engine.Registration.InterfaceGrpc
 RUN dotnet restore src/Company.Manager.Membership.ServiceGrpc -nowarn:msb3202,nu1503
 COPY . .
