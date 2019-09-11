@@ -8,16 +8,22 @@ using Destructurama;
 using Grpc.Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Extensions.Logging;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using Zametek.Utility.Logging;
 
 namespace Company.Api.Rest.ServiceGrpc
 {
     class Hosting
     {
-        public static IWebHost BuildWebHost(ILogger serilog)
+        internal readonly static string ServiceName = typeof(Program).Assembly.GetName().Name;
+        internal readonly static string BuildVersion = typeof(Startup).GetTypeInfo().Assembly.GetName().Version.ToString();
+
+        public static IWebHost BuildWebHost(Serilog.ILogger serilog)
         {
             // SSL gRPC
             var caCrt = File.ReadAllText(EnvVars.CaCrtPath());
@@ -44,8 +50,10 @@ namespace Company.Api.Rest.ServiceGrpc
                 })
                 .ConfigureServices(
                     services => services
-                        .AddSingleton<IMembershipManager>(membershipManager)
-                        .AddSingleton<ILogger>(serilog))
+                    .AddLogging()
+                        .AddSingleton(membershipManager)
+                        .AddSingleton(restApiLogger)
+                        .AddSingleton<ILoggerFactory>(_ => new SerilogLoggerFactory(restApiLogger)))
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
                 .Build();
@@ -53,9 +61,14 @@ namespace Company.Api.Rest.ServiceGrpc
 
         static void Main(string[] args)
         {
-            ILogger serilog = new LoggerConfiguration()
+            Serilog.ILogger serilog = new LoggerConfiguration()
                 .Enrich.FromLogProxy()
+                .Enrich.WithProcessId()
+                .Enrich.WithThreadId()
                 .Destructure.UsingAttributes()
+                .Enrich.WithProperty(nameof(BuildVersion), BuildVersion)
+                .Enrich.WithProperty(nameof(ServiceName), ServiceName)
+                .WriteTo.Console()
                 .WriteTo.Seq(EnvVars.SeqAddress())
                 .CreateLogger();
             Log.Logger = serilog;

@@ -8,19 +8,30 @@ using Company.Manager.Membership.Interface;
 using Destructurama;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Extensions.Logging;
 using System.IO;
+using System.Reflection;
 using Zametek.Utility.Logging;
 
 namespace Test.InProc.RestApi
 {
     public class Program
     {
+        internal readonly static string ServiceName = typeof(Program).Assembly.GetName().Name;
+        internal readonly static string BuildVersion = typeof(Startup).GetTypeInfo().Assembly.GetName().Version.ToString();
+
         public static void Main(string[] args)
         {
-            ILogger serilog = new LoggerConfiguration()
+            Serilog.ILogger serilog = new LoggerConfiguration()
                 .Enrich.FromLogProxy()
+                .Enrich.WithProcessId()
+                .Enrich.WithThreadId()
                 .Destructure.UsingAttributes()
+                .Enrich.WithProperty(nameof(BuildVersion), BuildVersion)
+                .Enrich.WithProperty(nameof(ServiceName), ServiceName)
+                .WriteTo.Console()
                 .WriteTo.Seq("http://localhost:5341")
                 .CreateLogger();
             Log.Logger = serilog;
@@ -28,7 +39,7 @@ namespace Test.InProc.RestApi
             BuildWebHost(serilog).Run();
         }
 
-        public static IWebHost BuildWebHost(ILogger serilog)
+        public static IWebHost BuildWebHost(Serilog.ILogger serilog)
         {
             var userAccess = LogProxy.Create<IUserAccess>(new UserAccess(serilog), serilog, LogType.All);
             var registrationEngine = LogProxy.Create<IRegistrationEngine>(new RegistrationEngine(userAccess, serilog), serilog, LogType.All);
@@ -40,8 +51,10 @@ namespace Test.InProc.RestApi
                 .UseKestrel()
                 .ConfigureServices(
                     services => services
+                        .AddLogging()
                         .AddSingleton(membershipManager)
-                        .AddSingleton(restApiLogger))
+                        .AddSingleton(restApiLogger)
+                        .AddSingleton<ILoggerFactory>(_ => new SerilogLoggerFactory(restApiLogger)))
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
                 .Build();

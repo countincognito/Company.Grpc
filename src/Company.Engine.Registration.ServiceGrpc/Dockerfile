@@ -1,10 +1,9 @@
-FROM microsoft/dotnet:2.0-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.1 AS base
 WORKDIR /app
 
-FROM microsoft/dotnet:2.0-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 ARG Config
 WORKDIR /src
-COPY Company.Grpc.sln ./
 COPY src/Company.Grpc.Common/Company.Grpc.Common.csproj src/Company.Grpc.Common/
 COPY src/Company.Grpc.Client/Company.Grpc.Client.csproj src/Company.Grpc.Client/
 COPY src/Company.Grpc.Server/Company.Grpc.Server.csproj src/Company.Grpc.Server/
@@ -16,7 +15,19 @@ COPY src/Company.Access.User.Client/Company.Access.User.Client.csproj src/Compan
 COPY src/Company.Access.User.InterfaceGrpc/Company.Access.User.InterfaceGrpc.csproj src/Company.Access.User.InterfaceGrpc/
 COPY src/Company.Access.User.Interface/Company.Access.User.Interface.csproj src/Company.Access.User.Interface/
 COPY src/Company.Engine.Registration.Impl/Company.Engine.Registration.Impl.csproj src/Company.Engine.Registration.Impl/
-RUN dotnet restore -nowarn:msb3202,nu1503
+
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Grpc.Common/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Grpc.Client/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Grpc.Server/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Common.Data/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Engine.Registration.ServiceGrpc/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Engine.Registration.InterfaceGrpc/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Engine.Registration.Interface/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Access.User.Client/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Access.User.InterfaceGrpc/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Access.User.Interface/
+RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Engine.Registration.Impl/
+
 COPY . .
 WORKDIR /src/src/Company.Engine.Registration.ServiceGrpc
 RUN dotnet build -c ${Config:-Release} -o /app

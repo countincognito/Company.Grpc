@@ -9,21 +9,11 @@ namespace Company.Grpc.Server
     public class MagicOnionTrackingContextFilterAttribute
         : MagicOnionFilterAttribute
     {
-        public MagicOnionTrackingContextFilterAttribute()
-            : base(null)
-        {
-        }
-
-        public MagicOnionTrackingContextFilterAttribute(Func<ServiceContext, Task> next)
-            : base(next)
-        {
-        }
-
-        public async override Task Invoke(ServiceContext context)
+        public override ValueTask Invoke(ServiceContext context, Func<ServiceContext, ValueTask> next)
         {
             Metadata headers = context?.CallContext?.RequestHeaders ?? new Metadata();
             TrackingHelper.ProcessHeaders(headers);
-            await Next?.Invoke(context);
+            return next?.Invoke(context) ?? new ValueTask();
         }
     }
 }
