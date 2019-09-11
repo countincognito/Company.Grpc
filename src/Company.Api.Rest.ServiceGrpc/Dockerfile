@@ -3,7 +3,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 ARG Config
-WORKDIR /src
+WORKDIR /
 COPY src/Company.Grpc.Common/Company.Grpc.Common.csproj src/Company.Grpc.Common/
 COPY src/Company.Grpc.Client/Company.Grpc.Client.csproj src/Company.Grpc.Client/
 COPY src/Company.Common.Data/Company.Common.Data.csproj src/Company.Common.Data/
@@ -14,18 +14,10 @@ COPY src/Company.Manager.Membership.Interface/Company.Manager.Membership.Interfa
 COPY src/Company.Api.Rest.Impl/Company.Api.Rest.Impl.csproj src/Company.Api.Rest.Impl/
 COPY src/Company.Api.Rest.Data/Company.Api.Rest.Data.csproj src/Company.Api.Rest.Data/
 
-RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Grpc.Common/
-RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Grpc.Client/
-RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Common.Data/
 RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Api.Rest.ServiceGrpc/
-RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Manager.Membership.Client/
-RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Manager.Membership.InterfaceGrpc/
-RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Manager.Membership.Interface/
-RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Api.Rest.Impl/
-RUN dotnet restore -nowarn:msb3202,nu1503 src/Company.Api.Rest.Data/
 
 COPY . .
-WORKDIR /src/src/Company.Api.Rest.ServiceGrpc
+WORKDIR /src/Company.Api.Rest.ServiceGrpc
 RUN dotnet build -c ${Config:-Release} -o /app
 
 FROM build AS publish

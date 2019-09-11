@@ -2,9 +2,9 @@
 
 This a minimalist template for building microservice architectures, using the [IDesign Method](http://www.idesign.net/), using Docker Compose, gRPC, .NET Core 2.1, a HTTPS RESTful public API, and Swagger. It is heavily influenced by code samples that can be downloaded from the [IDesign website](http://www.idesign.net/Downloads).
 
-It requires a local installation of [Seq](https://getseq.net/) for logging, OpenSSL (installing [OpenSSL.Light](https://chocolatey.org/packages/OpenSSL.Light) with [chocolatey](https://chocolatey.org/) should work), and [Docker for Windows](https://www.docker.com/docker-windows).
+It requires a local installation of [Seq](https://getseq.net/) for logging, OpenSSL (installing [OpenSSL.Light](https://chocolatey.org/packages/OpenSSL.Light) with [chocolatey](https://chocolatey.org/) should work), the dotnet Core 2.2 SDK, and [Docker for Windows](https://www.docker.com/docker-windows).
 
-This solution uses the brilliant [MagicOnion](https://github.com/neuecc/MagicOnion) to dynamically build gRPC clients/servers without having to use protoc. It also uses [MessagePack](https://github.com/neuecc/MessagePack-CSharp) rather than Protobuf.
+This solution uses the brilliant [MagicOnion](https://github.com/Cysharp/MagicOnion) to dynamically build gRPC clients/servers without having to use protoc. It also uses [MessagePack](https://github.com/neuecc/MessagePack-CSharp) rather than Protobuf.
 
 Details on how to enable SSL using gRPC can be found [here](https://stackoverflow.com/questions/37714558/how-to-enable-server-side-ssl-for-grpc). Please note: this solution uses the simpler client-side authentication rather than server-side authentication, but the same principles still apply.
 
