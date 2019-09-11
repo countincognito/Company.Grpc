@@ -1,8 +1,8 @@
 # Company.Grpc
 
-This a minimalist template for building microservice architectures, using the [IDesign Method](http://www.idesign.net/), using Docker Compose, gRPC, .NET Core 2.1, a HTTPS RESTful public API, and Swagger. It is heavily influenced by code samples that can be downloaded from the [IDesign website](http://www.idesign.net/Downloads).
+This a minimalist template for building microservice architectures, using the [IDesign Method](http://www.idesign.net/), using Docker Compose, gRPC, .NET Core 2.2, a HTTPS RESTful public API, and Swagger. It is heavily influenced by code samples that can be downloaded from the [IDesign website](http://www.idesign.net/Downloads).
 
-It requires a local installation of [Seq](https://getseq.net/) for logging, OpenSSL (installing [OpenSSL.Light](https://chocolatey.org/packages/OpenSSL.Light) with [chocolatey](https://chocolatey.org/) should work), the dotnet Core 2.2 SDK, and [Docker for Windows](https://www.docker.com/docker-windows).
+It requires a local installation of [Seq](https://getseq.net/) for logging, OpenSSL (installing [OpenSSL.Light](https://chocolatey.org/packages/OpenSSL.Light) with [chocolatey](https://chocolatey.org/) should work), and [Docker for Windows](https://www.docker.com/docker-windows).
 
 This solution uses the brilliant [MagicOnion](https://github.com/Cysharp/MagicOnion) to dynamically build gRPC clients/servers without having to use protoc. It also uses [MessagePack](https://github.com/neuecc/MessagePack-CSharp) rather than Protobuf.
 
