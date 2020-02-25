@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
+using System;
 using System.Collections.Generic;
 using Zametek.Utility.Logging.AspNetCore;
 
@@ -27,16 +28,15 @@ namespace Company.Api.Rest.Impl
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc();
-            //services.AddRouting(options => // This doesn't work yet for some reason.
-            //{
-            //    options.LowercaseUrls = true;
-            //});
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
+            });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-                c.DocumentFilter<LowercaseDocumentFilter>();
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
         }
 
@@ -56,7 +56,7 @@ namespace Company.Api.Rest.Impl
                     { UserIdName, context.User?.Identity?.Name },
                     { ConnectionIdName, context.Connection.Id },
                     { "Jurisdiction", "UK" },
-                    { "New call-specific random string", System.Guid.NewGuid().ToString() }
+                    { "New call-specific random string", Guid.NewGuid().ToString() }
                 });
 
             app.UseMvc();
